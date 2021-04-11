@@ -42,13 +42,13 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"/>
     </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/addphoto_btn_upload"
-        android:text="@string/upload_image"
-        android:layout_toRightOf="@+id/addphoto_image"
-        android:layout_below="@+id/editText"
-        android:theme="@style/ButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText"
+        android:text="@string/upload_image"
+        android:theme="@style/ButtonStyle" />
 
 </RelativeLayout>

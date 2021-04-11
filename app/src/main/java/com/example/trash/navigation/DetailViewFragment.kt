@@ -1,5 +1,6 @@
 package com.example.trash.navigation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -65,9 +66,16 @@ class DetailViewFragment : Fragment(){
             viewholder.detailviewitem_explain_textview.text = contentDTOs!![position].explain
 
             //likes
-            viewholder.detailviewitem_favoritecounter_textview.text = "Likes " + contentDTOs!![position].favoriteCount
+            //viewholder.detailviewitem_favoritecounter_textview.text = "Likes " + contentDTOs!![position].favoriteCount
 
             Glide.with(holder.itemView.context).load(contentDTOs!![position].imageUrl).into(viewholder.detailviewitem_profile_image)
+
+            viewholder.detailviewitem_comment_imageview.setOnClickListener { v ->
+                var intent = Intent(v.context,CommentActivity::class.java)
+                intent.putExtra("contentUid",contentUidList[position])
+                intent.putExtra("destinationUid",contentDTOs[position].uid)
+                startActivity(intent)
+            }
 
         }
     }
