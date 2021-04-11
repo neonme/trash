@@ -76,6 +76,11 @@ class DetailViewFragment : Fragment(){
                 intent.putExtra("destinationUid",contentDTOs[position].uid)
                 startActivity(intent)
             }
+            viewholder.Directmessage_button.setOnClickListener { v ->
+                var intent = Intent(v.context,chatting::class.java)
+                intent.putExtra("destinationUid",contentDTOs[position].uid)
+                startActivity(intent)
+            }
 
         }
     }

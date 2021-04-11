@@ -25,6 +25,9 @@ class Loginactivity : AppCompatActivity() {
         editTextEmail = findViewById(R.id.email_edittext);
         editTextPassword = findViewById(R.id.password_edittext);
         email_login_button.setOnClickListener {
+            signinEmail()
+        }
+        email_register_button.setOnClickListener {
             signinAndSignup()
         }
     }
@@ -47,6 +50,8 @@ class Loginactivity : AppCompatActivity() {
             }
     }
     fun signinEmail(){
+        email = editTextEmail?.getText().toString();
+        password = editTextPassword?.getText().toString();
         auth?.signInWithEmailAndPassword(email, password)
             ?.addOnCompleteListener {
                     task ->

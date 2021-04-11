@@ -41,6 +41,10 @@
             android:layout_width="35dp"
             android:layout_height="35dp"/>
     </LinearLayout>
+    <Button
+        android:id="@+id/Directmessage_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"></Button>
     <!--<TextView
          android:id="@+id/detailviewitem_favoritecounter_textview"
          android:text="like 0"

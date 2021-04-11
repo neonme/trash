@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".navigation.CommentActivity"></activity>
+        <activity android:name=".navigation.chatting"></activity>
+        <activity android:name=".navigation.CommentActivity" />
         <activity android:name=".navigation.AddPhotoActivity" />
         <activity android:name=".Loginactivity">
             <intent-filter>
