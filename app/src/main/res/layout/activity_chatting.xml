@@ -6,6 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".navigation.chatting">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comment_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="674dp"
+        android:layout_below="@+id/toolbar_division"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="30dp"></androidx.recyclerview.widget.RecyclerView>
     <EditText
         android:layout_toLeftOf="@+id/messageActivity_button"
         android:layout_alignParentBottom="true"
