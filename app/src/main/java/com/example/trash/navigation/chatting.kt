@@ -49,6 +49,7 @@ class chatting : AppCompatActivity() {
                 var comment = ChattingDTO.Comment()
                 comment.userId = uid
                 comment.message = messageActivity_editText.text.toString()
+                comment.timestamp = System.currentTimeMillis()
                 firestore?.collection("chatrooms")?.document(chatRoomUid!!)?.collection("comments")?.document()?.set(comment)
             }
 
@@ -60,7 +61,17 @@ class chatting : AppCompatActivity() {
     inner class CommentRecyclerviewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         var comments : ArrayList<ChattingDTO.Comment> = arrayListOf()
         init{
-            firestore?.collection("chatrooms")?.document(chatRoomUid!!)?.collection("comments")?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            /*firestore?.collection("chatrooms")?.document(chatRoomUid!!)?.collection("comments")?.get()?.addOnSuccessListener { documents ->
+                comments.clear()
+                if(documents == null) return@addOnSuccessListener
+
+                for (document in documents) {
+                    var item = document.toObject(ChattingDTO.Comment::class.java)
+                    comments.add(item!!)
+                }
+                notifyDataSetChanged()
+            }*/
+            firestore?.collection("chatrooms")?.document(chatRoomUid!!)?.collection("comments")?.orderBy("timestamp")?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 comments.clear()
                 if (querySnapshot == null) return@addSnapshotListener
 
@@ -92,7 +103,21 @@ class chatting : AppCompatActivity() {
     }
 
     fun checkroom(){
-        firestore?.collection("chatrooms")?.whereEqualTo("userSender",uid)?.whereEqualTo("userReceiver",destinationUID)?.get()
+        firestore?.collection("chatrooms")?.whereIn("userSender", listOf(uid,destinationUID))?.get()
+                ?.addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        var item = document.toObject(ChattingDTO::class.java)
+                        if(item.users.containsKey(destinationUID)){
+                            chatRoomUid = document.id
+
+
+                            comment_recyclerview.adapter = CommentRecyclerviewAdapter()
+                            comment_recyclerview.layoutManager = LinearLayoutManager(this)
+                        }
+                    }
+                }
+                ?.addOnFailureListener { }
+        /*firestore?.collection("chatrooms")?.whereEqualTo("userSender",uid)?.whereEqualTo("userReceiver",destinationUID)?.get()
             ?.addOnSuccessListener { documents ->
                 for (document in documents) {
                     var item = document.toObject(ChattingDTO::class.java)
@@ -105,6 +130,6 @@ class chatting : AppCompatActivity() {
                     }
                 }
             }
-            ?.addOnFailureListener { }
+            ?.addOnFailureListener { }*/
     }
 }

@@ -6,5 +6,6 @@ data class ChattingDTO (var userSender : String? = null,
                         var comments : Map<String,Comment> = HashMap()){
     data class Comment(
         var userId : String? = null,
-        var message : String? = null)
+        var message : String? = null,
+        var timestamp : Long? = null)
 }
