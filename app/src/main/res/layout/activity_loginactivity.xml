@@ -13,67 +13,62 @@
         android:layout_height="wrap_content"
         android:src="@drawable/logo_title"/>
 
-    <LinearLayout android:id="@+id/signin_layout"
+    <LinearLayout
+        android:id="@+id/signin_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="140dp"
         android:orientation="vertical">
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
-            <EditText android:id="@+id/email_edittext"
+
+            <EditText
+                android:id="@+id/email_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/email"/>
+                android:hint="@string/email" />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
-            <EditText android:inputType="textPassword"
+
+            <EditText
                 android:id="@+id/password_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/password"/>
+                android:hint="@string/password"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button android:id="@+id/email_login_button"
-            android:text="signin by email"
-            android:theme="@style/ButtonStyle"
+        <Button
+            android:id="@+id/email_login_button"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"/>
-        <Button android:id="@+id/email_register_button"
-            android:text="create account"
-            android:theme="@style/ButtonStyle"
+            android:layout_marginBottom="10dp"
+            android:text="signin by email"
+            android:theme="@style/ButtonStyle" />
+
+        <Button
+            android:id="@+id/email_register_button"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"/>
-        <Button android:id="@+id/facebook_login_button"
-            android:text="@string/signin_facebook"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/btn_signin_facebook"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"/>
-        <Button android:id="@+id/google_sign_in_button"
-            android:text="@string/signin_google"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/btn_signin_google"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="80dp"/>
+            android:layout_marginBottom="10dp"
+            android:text="create account"
+            android:theme="@style/ButtonStyle" />
     </LinearLayout>
 
 </RelativeLayout>

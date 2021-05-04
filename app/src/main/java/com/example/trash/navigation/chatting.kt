@@ -97,6 +97,7 @@ class chatting : AppCompatActivity() {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             var view = holder.itemView
             view.messageItem_TextView_message.text = comments[position].message
+            //view.messageItem_textview_name.
             //(holder as CustomViewHolder).textView_message.setText(comments[position].message)
         }
 

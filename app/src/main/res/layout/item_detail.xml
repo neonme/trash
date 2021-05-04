@@ -4,7 +4,36 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/detailviewitem_profile_image"
+            android:src="@mipmap/ic_launcher"
+            android:layout_margin="7.5dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+
+        <TextView
+            android:id="@+id/detailviewitem_profile_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/detailviewitem_profile_image"
+            android:text="User name" />
+
+        <Button
+            android:id="@+id/detailviewitem_delete_button"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:text="삭제하기"
+            android:textSize="12sp"
+            android:visibility="gone" ></Button>
+    </RelativeLayout>
+    <!---<LinearLayout
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -19,7 +48,7 @@
             android:id="@+id/detailviewitem_profile_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-    </LinearLayout>
+    </LinearLayout>-->
     <ImageView
         android:id="@+id/detailviewitem_imageview_content"
         android:scaleType="fitXY"
@@ -41,10 +70,10 @@
             android:layout_width="35dp"
             android:layout_height="35dp"/>
     </LinearLayout>
-    <Button
+    <!--<Button
         android:id="@+id/Directmessage_button"
         android:layout_width="match_parent"
-        android:layout_height="50dp"></Button>
+        android:layout_height="50dp"></Button>-->
     <!--<TextView
          android:id="@+id/detailviewitem_favoritecounter_textview"
          android:text="like 0"

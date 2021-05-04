@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_loginactivity.*
-
+import kotlinx.android.synthetic.main.item_detail.*
 
 class Loginactivity : AppCompatActivity() {
     var auth : FirebaseAuth? = null
@@ -20,10 +20,18 @@ class Loginactivity : AppCompatActivity() {
     private var password = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_loginactivity)
         auth = FirebaseAuth.getInstance()
         editTextEmail = findViewById(R.id.email_edittext);
         editTextPassword = findViewById(R.id.password_edittext);
+        val user = FirebaseAuth.getInstance().currentUser;
+        if (user != null) {
+            // User is signed in
+            moveMainPage(user)
+        } else {
+            // No user is signed in
+        }
         email_login_button.setOnClickListener {
             signinEmail()
         }
@@ -39,6 +47,7 @@ class Loginactivity : AppCompatActivity() {
                     task ->
                 if(task.isSuccessful){
                     //Creating a user account
+
                     moveMainPage(task.result?.user)
                 }else if(!task.exception?.message.isNullOrEmpty()){
                     //Show the error message

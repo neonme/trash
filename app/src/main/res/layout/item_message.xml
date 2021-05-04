@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:id="@+id/messageItem_linearlayout_destination"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/messageItem_imageview_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"></ImageView>
+        <TextView
+            android:id="@+id/messageItem_textview_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+    </LinearLayout>
     <TextView
         android:id="@+id/messageItem_TextView_message"
         android:layout_width="wrap_content"

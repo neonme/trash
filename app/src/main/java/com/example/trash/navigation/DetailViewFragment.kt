@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.trash.R
 import com.example.trash.navigation.model.ContentDTO
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_detail.view.*
+import kotlinx.android.synthetic.main.item_detail.*
 import kotlinx.android.synthetic.main.item_detail.view.*
 
 class DetailViewFragment : Fragment(){
@@ -34,6 +36,9 @@ class DetailViewFragment : Fragment(){
                 contentDTOs.clear()
                 contentUidList.clear()
 
+                //Sometimes, This code return null of querySnapshot when it signout
+                if(querySnapshot == null) return@addSnapshotListener
+                
                 for(snapshot in querySnapshot!!.documents){
                     var item = snapshot.toObject(ContentDTO::class.java)
                     contentDTOs.add(item!!)
@@ -59,6 +64,16 @@ class DetailViewFragment : Fragment(){
             //UserId
             viewholder.detailviewitem_profile_textview.text = contentDTOs!![position].userId
 
+            if(contentDTOs!![position].userId == FirebaseAuth.getInstance().currentUser?.email){
+                detailviewitem_delete_button.visibility = View.VISIBLE
+                viewholder.detailviewitem_delete_button.setOnClickListener {
+                    firestore?.collection("images")?.document(contentUidList[position])!!.delete()
+                }
+                viewholder.detailviewitem_comment_imageview.setOnClickListener{
+
+                }
+            }
+
             //Image
             Glide.with(holder.itemView.context).load(contentDTOs!![position].imageUrl).into(viewholder.detailviewitem_imageview_content)
 
@@ -76,11 +91,11 @@ class DetailViewFragment : Fragment(){
                 intent.putExtra("destinationUid",contentDTOs[position].uid)
                 startActivity(intent)
             }
-            viewholder.Directmessage_button.setOnClickListener { v ->
+            /*viewholder.Directmessage_button.setOnClickListener { v ->
                 var intent = Intent(v.context,chatting::class.java)
                 intent.putExtra("destinationUid",contentDTOs[position].uid)
                 startActivity(intent)
-            }
+            }*/
 
         }
     }
