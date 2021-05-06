@@ -39,6 +39,7 @@ class Loginactivity : AppCompatActivity() {
             signinAndSignup()
         }
     }
+    
     fun signinAndSignup(){
         email = editTextEmail?.getText().toString();
         password = editTextPassword?.getText().toString();

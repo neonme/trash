@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.trash.Loginactivity
 import com.example.trash.R
 import com.example.trash.navigation.model.ContentDTO
@@ -49,8 +50,26 @@ class UserFragment : Fragment(){
         fragmentView?.account_reyclerview?.adapter = UserFragmentRecyclerViewAdapter()
         fragmentView?.account_reyclerview?.layoutManager = LinearLayoutManager(activity)
 
+        fragmentView?.account_iv_profile?.setOnClickListener {
+            var photoPickerIntent = Intent(Intent.ACTION_PICK)
+            photoPickerIntent.type = "image/*"
+            activity?.startActivityForResult(photoPickerIntent,PICK_PROFILE_FROM_ALBUM)
+        }
+
+        getProfileImage()
         return fragmentView
     }
+
+    fun getProfileImage(){
+        firestore?.collection("profileImages")?.document(uid!!)?.addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
+            if(documentSnapshot == null) return@addSnapshotListener
+            if(documentSnapshot.data != null){
+                var url = documentSnapshot?.data!!["image"]
+                Glide.with(activity!!).load(url).apply(RequestOptions().circleCrop()).into(view?.account_iv_profile!!)
+            }
+        }
+    }
+
     inner class UserFragmentRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         var contentDTOs : ArrayList<ContentDTO> = arrayListOf()
         var contentUidList : ArrayList<String> = arrayListOf()
@@ -66,7 +85,7 @@ class UserFragment : Fragment(){
                     contentDTOs.add(snapshot.toObject(ContentDTO::class.java)!!)
                     contentUidList.add(snapshot.id)
                 }
-                fragmentView?.account_tv_post_count?.text = contentDTOs.size.toString()
+                view?.account_tv_post_count?.text = contentDTOs.size.toString()
                 notifyDataSetChanged()
             }
         }
